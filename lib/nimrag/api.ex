@@ -34,9 +34,9 @@ defmodule Nimrag.Api do
   def put(%Client{} = client, opts) do
     client
     |> req(opts)
-    |> Req.get()
+    |> Req.put()
     |> case do
-      {:ok, %{status: 200} = resp} -> {:ok, resp, Req.Response.get_private(resp, :client)}
+      {:ok, resp} -> {:ok, resp, Req.Response.get_private(resp, :client)}
       {:error, error} -> {:error, error}
     end
   end
